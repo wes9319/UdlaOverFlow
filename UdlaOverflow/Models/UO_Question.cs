@@ -19,9 +19,11 @@ namespace UdlaOverflow.Models
 
         public DateTime DateQuestion { get; set; }
 
-        public virtual UO_User UO_User { get; set; }//connection with UO_User
+        public virtual ApplicationUser ApplicationUsers { get; set; }//connection with UO_User table
 
-        public virtual UO_Category UO_Category { get; set; }//connection with UO_Category
-        
+        public virtual UO_Category UO_Category { get; set; }//connection with UO_Category table 
+
+        public virtual ICollection<UO_Answer> UO_Answers { get; set; }//back connection with UO_Answers table
+
     }
 }
