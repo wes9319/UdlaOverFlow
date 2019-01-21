@@ -9,9 +9,15 @@ namespace UdlaOverflow.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
-    {
-        public virtual ICollection<UO_Question> UO_Questions { get; set; }
-        public virtual ICollection<UO_Answer> UO_Answers { get; set; }
+    {   
+        /*
+         * custom attribute for AspNetUsers
+         */
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public virtual ICollection<UO_Question> UO_Questions { get; set; }//back connection to UO_Question table
+        public virtual ICollection<UO_Answer> UO_Answers { get; set; }//back connection to UO_Answer table
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {    
