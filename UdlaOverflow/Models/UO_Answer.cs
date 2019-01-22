@@ -23,7 +23,5 @@ namespace UdlaOverflow.Models
 
         public virtual ApplicationUser ApplicationUsers { get; set; }//connection with UO_User
 
-        //public virtual UO_Category UO_Category { get; set; }//connection UO_Category
-
     }
 }
