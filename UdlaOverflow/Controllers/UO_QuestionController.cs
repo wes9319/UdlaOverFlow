@@ -10,11 +10,15 @@ using UdlaOverflow.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using UdlaOverflow.Controllers;
 
 namespace UdlaOverflow.Controllers
 {
+    
     public class UO_QuestionController : Controller
     {
+        //public static int? Det { get; set; }
+        
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: UO_Question
@@ -32,6 +36,7 @@ namespace UdlaOverflow.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             UO_Question uO_Question = db.Question.Find(id);
+            Session["Detail"] = id;
             if (uO_Question == null)
             {
                 return HttpNotFound();
@@ -55,11 +60,12 @@ namespace UdlaOverflow.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 uO_Question.UO_UserID = User.Identity.GetUserId();
                 uO_Question.DateQuestion = DateTime.Now;
                 db.Question.Add(uO_Question);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(Request.UrlReferrer.ToString());
             }
 
             ViewBag.UO_CategoryID = new SelectList(db.Category, "UO_CategoryID", "DescriptionCategory", uO_Question.UO_CategoryID);
@@ -132,6 +138,15 @@ namespace UdlaOverflow.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public PartialViewResult _UserQuestions(string Userid)
+        {
+            var order = from c in db.Question
+                        where c.UO_UserID == Userid
+                        select c; //linq
+            ViewBag.AspNetUsers = Userid;//hace las veces de variable temporal
+            return PartialView(order.ToList());
         }
     }
 }

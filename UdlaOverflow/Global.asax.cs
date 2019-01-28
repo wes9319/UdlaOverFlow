@@ -10,6 +10,8 @@ namespace UdlaOverflow
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        //public int? Det;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

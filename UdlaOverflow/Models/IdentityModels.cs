@@ -4,14 +4,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace UdlaOverflow.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-
+        [Display(Name = "Nombre")]
         public string FirstName { get; set; }
+
+        [Display(Name = "Apellido")]
         public string LastName { get; set; }
 
         public virtual ICollection<UO_Question> UO_Questions { get; set; }//back connection to UO_Question table

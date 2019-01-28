@@ -10,13 +10,15 @@ using UdlaOverflow.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using UdlaOverflow.Controllers;
 
 namespace UdlaOverflow.Controllers
 {
     public class UO_AnswerController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        //private int? DetalleID;
         // GET: UO_Answer
         public ActionResult Index()
         {
@@ -32,6 +34,7 @@ namespace UdlaOverflow.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             UO_Answer uO_Answer = db.Answer.Find(id);
+            //DetalleID = id;
             if (uO_Answer == null)
             {
                 return HttpNotFound();
@@ -53,8 +56,25 @@ namespace UdlaOverflow.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UO_AnswerID,UO_QuestionID,UO_UserID,UO_CategoryID,TopicAnswer,DescriptionAnswer")] UO_Answer uO_Answer)
         {
+            UO_QuestionController u = new UO_QuestionController();
+
             if (ModelState.IsValid)
             {
+                ViewData["Det"] = System.Web.HttpContext.Current.Session["Det"] as String;
+
+                //UO_Question uQ = db.Question.Find();
+                //UO_Question uQ = new UO_Question();
+                //uQ.
+                var i = Session["Detail"];
+                UO_Question uQ = db.Question.Find(i);
+                //uO_Answer.UO_QuestionID = uQ.UO_QuestionID;
+                //UO_Category uC = db.Category.Find(uQ.UO_CategoryID);
+                ////UO_Answer uA = db.Answer.Find(DetalleID);
+                ////UO_Question uQ = db.Question.Find(uA.UO_QuestionID);
+                ////UO_Category uC = db.Category.Find(uQ.UO_CategoryID);
+                uO_Answer.UO_CategoryID = uQ.UO_CategoryID;
+                uO_Answer.UO_QuestionID = uQ.UO_QuestionID; 
+                //uO_Answer.UO_QuestionID = ;
                 uO_Answer.UO_UserID = User.Identity.GetUserId();
                 db.Answer.Add(uO_Answer);
                 db.SaveChanges();
@@ -140,6 +160,15 @@ namespace UdlaOverflow.Controllers
                         where c.UO_QuestionID == Questionid
                         select c; //linq
             ViewBag.UO_Questions = Questionid;//hace las veces de variable temporal
+            return PartialView(order.ToList());
+        }
+
+        public PartialViewResult _UserAnswers(string Userid)
+        {
+            var order = from c in db.Answer
+                        where c.UO_UserID == Userid
+                        select c; //linq
+            ViewBag.AspNetUsers = Userid;//hace las veces de variable temporal
             return PartialView(order.ToList());
         }
     }

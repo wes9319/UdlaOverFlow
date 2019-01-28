@@ -9,7 +9,7 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.UO_Question.TitleQuestion)
         </th>
         <th>
@@ -17,7 +17,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UO_CategoryID)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.TopicAnswer)
         </th>
@@ -30,7 +30,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.UO_Question.TitleQuestion)
             </td>
             <td>
@@ -38,7 +38,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UO_CategoryID)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.TopicAnswer)
             </td>
@@ -46,9 +46,9 @@
                 @Html.DisplayFor(modelItem => item.DescriptionAnswer)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.UO_AnswerID }) |
+                @*@Html.ActionLink("Editar", "Edit", new { id = item.UO_AnswerID }) |
                 @Html.ActionLink("Ver Detalle", "Details", new { id = item.UO_AnswerID }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.UO_AnswerID })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.UO_AnswerID })*@
             </td>
         </tr>
     }

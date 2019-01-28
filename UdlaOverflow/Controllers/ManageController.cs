@@ -15,6 +15,7 @@ namespace UdlaOverflow.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -64,8 +65,12 @@ namespace UdlaOverflow.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var currentUser = db.Users.Find(userId);
             var model = new IndexViewModel
             {
+                FirstName = currentUser.FirstName,
+                LastName = currentUser.LastName,
+                UserId = currentUser.Id,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
