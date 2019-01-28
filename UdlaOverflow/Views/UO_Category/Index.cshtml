@@ -1,0 +1,33 @@
+﻿@model IEnumerable<UdlaOverflow.Models.UO_Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Categorías Registradas</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionCategory)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionCategory)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.UO_CategoryID }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.UO_CategoryID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.UO_CategoryID })
+        </td>
+    </tr>
+}
+
+</table>
