@@ -103,13 +103,16 @@
     </dl>
     <hr />
     @Html.Action("_UserQuestions", "UO_Question", new { Userid = Model.UserId })
-    <hr/>
+    <hr />
     @Html.Action("_UserAnswers", "UO_Answer", new { Userid = Model.UserId })
 
+    <hr />
+    @*@Html.Action("_Category", "UO_Answer", new { Userid = Model.UserId })*@
+
     @*<table style="width:100%">
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-    </table>*@
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </table>*@
 </div>
