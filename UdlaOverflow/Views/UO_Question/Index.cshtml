@@ -4,11 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h1>Bienvenido a UdlaOverFlow</h1>
-<h2>Preguntas Recientes</h2>
+<h1 style="text-align:center;">Bienvenido a UdlaOverFlow</h1>
+<h2 style="text-align:center;">Preguntas Recientes</h2>
 
 <p>
-    @Html.ActionLink("Añadir Nueva Pregunta", "Create", null, new { @class= "btn btn-primary btn-md" })
+    @Html.ActionLink("Añadir Nueva Pregunta", "Create", null, new { @class = "btn btn-primary btn-md" })
+    @*<br />
+    <input type="button" value="Buscar" onclick="location.href='@Url.Action("Buscar", "UO_Question", new { Pregunta =  })'" />
+    <input type="text" id="preg" />*@
 </p>
 <table class="table">
     <tr>
@@ -50,11 +53,21 @@
             </td>
             <td>
                 @*@Html.ActionLink("Editar", "Edit", new { id = item.UO_QuestionID }) |*@
-                @Html.ActionLink("Ver detalle", "Details", new { id = item.UO_QuestionID }) 
+                @Html.ActionLink("Ver detalle", "Details", new { id = item.UO_QuestionID })
                 @*@Html.ActionLink("Detalle", "Details", new { id = item.UO_QuestionID }) |*@
                 @*@Html.ActionLink("Eliminar", "Delete", new { id = item.UO_QuestionID })*@
             </td>
         </tr>
-    }
+
+        <p>
+            @using (Html.BeginForm("Buscar", "UO_Question", FormMethod.Get))
+            {
+            <p>
+                Buscar Pregunta: @Html.TextBox("palabra")
+                <input type="submit" value="Filter" />
+            </p>
+        }
+            </p>
+        }
 
 </table>

@@ -13,6 +13,7 @@ using Microsoft.Owin.Security;
 
 namespace UdlaOverflow.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UO_CategoryController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

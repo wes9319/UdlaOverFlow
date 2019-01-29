@@ -317,6 +317,7 @@
     <Content Include="Views\Shared\_AnswersForQuestion.cshtml" />
     <Content Include="Views\Shared\_UserQuestions.cshtml" />
     <Content Include="Views\Shared\_UserAnswers.cshtml" />
+    <Content Include="Views\UO_Question\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

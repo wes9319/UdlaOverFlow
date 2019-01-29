@@ -26,33 +26,42 @@
         <th>
             @Html.DisplayNameFor(model => model.DescriptionAnswer)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RateAnswer)
+        </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UO_Question.TitleQuestion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UO_UserID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UO_CategoryID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TopicAnswer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescriptionAnswer)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.UO_AnswerID }) |
-                @*@Html.ActionLink("Ver Detalle", "Details", new { id = item.UO_AnswerID }) |*@
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.UO_AnswerID })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UO_Question.TitleQuestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UO_UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UO_CategoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopicAnswer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionAnswer)
+        </td>
+        @*<td>
+            <input type="button" value="Votar" onclick="location.href='@Url.Action("Vote", "UO_Answer",new { id = item.UO_AnswerID })'" />
+            @Html.DisplayFor(modelItem => item.RateAnswer)
+
+        </td>*@
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.UO_AnswerID }) |
+            @*@Html.ActionLink("Ver Detalle", "Details", new { id = item.UO_AnswerID }) |*@
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.UO_AnswerID })
+        </td>
+    </tr>
     }
 
 </table>

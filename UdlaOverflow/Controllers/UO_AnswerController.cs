@@ -16,10 +16,11 @@ namespace UdlaOverflow.Controllers
 {
     public class UO_AnswerController : Controller
     {
-        
+
         private ApplicationDbContext db = new ApplicationDbContext();
         //private int? DetalleID;
         // GET: UO_Answer
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var answer = db.Answer.Include(u => u.UO_Question);
@@ -27,6 +28,7 @@ namespace UdlaOverflow.Controllers
         }
 
         // GET: UO_Answer/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +45,7 @@ namespace UdlaOverflow.Controllers
         }
 
         // GET: UO_Answer/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.UO_QuestionID = new SelectList(db.Question, "UO_QuestionID", "TitleQuestion");
@@ -54,6 +57,7 @@ namespace UdlaOverflow.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "UO_AnswerID,UO_QuestionID,UO_UserID,UO_CategoryID,TopicAnswer,DescriptionAnswer")] UO_Answer uO_Answer)
         {
             UO_QuestionController u = new UO_QuestionController();
@@ -86,6 +90,7 @@ namespace UdlaOverflow.Controllers
         }
 
         // GET: UO_Answer/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -107,6 +112,7 @@ namespace UdlaOverflow.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "UO_AnswerID,UO_QuestionID,UO_UserID,UO_CategoryID,TopicAnswer,DescriptionAnswer")] UO_Answer uO_Answer)
         {
             if (ModelState.IsValid)
@@ -120,6 +126,7 @@ namespace UdlaOverflow.Controllers
         }
 
         // GET: UO_Answer/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -137,6 +144,7 @@ namespace UdlaOverflow.Controllers
         // POST: UO_Answer/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             UO_Answer uO_Answer = db.Answer.Find(id);
@@ -170,6 +178,57 @@ namespace UdlaOverflow.Controllers
                         select c; //linq
             ViewBag.AspNetUsers = Userid;//hace las veces de variable temporal
             return PartialView(order.ToList());
+        }
+
+        //public ActionResult Vote(int id)
+        //{
+        //    UO_Answer uO_Answer = db.Answer.Find(id);
+        //    uO_Answer.RateAnswer = uO_Answer.RateAnswer++;
+        //    uO_Answer.UO_AnswerID = uO_Answer.UO_AnswerID;
+        //    uO_Answer.UO_QuestionID = uO_Answer.UO_QuestionID;
+        //    uO_Answer.UO_UserID = uO_Answer.UO_UserID;
+        //    uO_Answer.UO_CategoryID = uO_Answer.UO_CategoryID;
+        //    uO_Answer.TopicAnswer = uO_Answer.TopicAnswer;
+        //    uO_Answer.DescriptionAnswer = uO_Answer.DescriptionAnswer;
+        //    uO_Answer.ApplicationUsers = uO_Answer.ApplicationUsers;
+        //    db.Entry(uO_Answer).State = EntityState.Modified;
+        //    db.SaveChanges();
+        //    return Redirect(Request.UrlReferrer.ToString());
+        //}
+
+        // GET: UO_Answer/Edit/5
+        public ActionResult Vote (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            UO_Answer uO_Answer = db.Answer.Find(id);
+            if (uO_Answer == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.returnUrl = Request.UrlReferrer;
+            ViewBag.UO_QuestionID = new SelectList(db.Question, "UO_QuestionID", "TitleQuestion", uO_Answer.UO_QuestionID);
+            return RedirectToAction("Index", "Manage");
+        }
+
+        // POST: UO_Answer/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Vote([Bind(Include = "UO_AnswerID,UO_QuestionID,UO_UserID,UO_CategoryID,TopicAnswer,DescriptionAnswer,RateAnswer")] UO_Answer uO_Answer)
+        {
+            if (ModelState.IsValid)
+            {
+                uO_Answer.RateAnswer = uO_Answer.RateAnswer++;
+                db.Entry(uO_Answer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index","Manage");
+            }
+            ViewBag.UO_QuestionID = new SelectList(db.Question, "UO_QuestionID", "TitleQuestion", uO_Answer.UO_QuestionID);
+            return RedirectToAction("Index", "Manage");
         }
     }
 }
