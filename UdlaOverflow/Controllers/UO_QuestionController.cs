@@ -99,7 +99,7 @@ namespace UdlaOverflow.Controllers
             {
                 db.Entry(uO_Question).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Manage");
             }
             ViewBag.UO_CategoryID = new SelectList(db.Category, "UO_CategoryID", "DescriptionCategory", uO_Question.UO_CategoryID);
             return View(uO_Question);
@@ -128,7 +128,7 @@ namespace UdlaOverflow.Controllers
             UO_Question uO_Question = db.Question.Find(id);
             db.Question.Remove(uO_Question);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Manage");
         }
 
         protected override void Dispose(bool disposing)

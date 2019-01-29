@@ -78,7 +78,7 @@ namespace UdlaOverflow.Controllers
                 uO_Answer.UO_UserID = User.Identity.GetUserId();
                 db.Answer.Add(uO_Answer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "UO_Question");
             }
 
             ViewBag.UO_QuestionID = new SelectList(db.Question, "UO_QuestionID", "TitleQuestion", uO_Answer.UO_QuestionID);
@@ -113,7 +113,7 @@ namespace UdlaOverflow.Controllers
             {
                 db.Entry(uO_Answer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Manage");
             }
             ViewBag.UO_QuestionID = new SelectList(db.Question, "UO_QuestionID", "TitleQuestion", uO_Answer.UO_QuestionID);
             return View(uO_Answer);
@@ -142,7 +142,7 @@ namespace UdlaOverflow.Controllers
             UO_Answer uO_Answer = db.Answer.Find(id);
             db.Answer.Remove(uO_Answer);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Manage");
         }
 
         protected override void Dispose(bool disposing)
