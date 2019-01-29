@@ -22,6 +22,7 @@ namespace UdlaOverflow.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: UO_Question
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var question = db.Question.Include(u => u.UO_Category);
@@ -29,6 +30,7 @@ namespace UdlaOverflow.Controllers
         }
 
         // GET: UO_Question/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,6 +47,8 @@ namespace UdlaOverflow.Controllers
         }
 
         // GET: UO_Question/Create
+        
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.UO_CategoryID = new SelectList(db.Category, "UO_CategoryID", "DescriptionCategory");
@@ -56,6 +60,7 @@ namespace UdlaOverflow.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "UO_QuestionID,UO_UserID,UO_CategoryID,TitleQuestion,DescriptionQuestion,DateQuestion")] UO_Question uO_Question)
         {
             if (ModelState.IsValid)
@@ -73,6 +78,7 @@ namespace UdlaOverflow.Controllers
         }
 
         // GET: UO_Question/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,6 +99,7 @@ namespace UdlaOverflow.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "UO_QuestionID,UO_UserID,UO_CategoryID,TitleQuestion,DescriptionQuestion,DateQuestion")] UO_Question uO_Question)
         {
             if (ModelState.IsValid)
@@ -106,6 +113,7 @@ namespace UdlaOverflow.Controllers
         }
 
         // GET: UO_Question/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -123,6 +131,7 @@ namespace UdlaOverflow.Controllers
         // POST: UO_Question/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             UO_Question uO_Question = db.Question.Find(id);
@@ -147,6 +156,15 @@ namespace UdlaOverflow.Controllers
                         select c; //linq
             ViewBag.AspNetUsers = Userid;//hace las veces de variable temporal
             return PartialView(order.ToList());
+        }
+        [Authorize]
+        public ActionResult Buscar (string palabra)
+        {
+            var order = from c in db.Question
+                        where c.TitleQuestion == palabra
+                        select c; //linq
+            ViewBag.AspNetUsers = palabra;//hace las veces de variable temporal
+            return View(order.ToList());
         }
     }
 }

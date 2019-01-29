@@ -9,15 +9,18 @@ namespace UdlaOverflow.Models
     public class UO_Answer
     {
         public int UO_AnswerID { get; set; }
-
+       
         public int UO_QuestionID { get; set; }//FK UO_Question
-
+       
         public string UO_UserID { get; set; }//FK UO_User
-
+       
         public int UO_CategoryID { get; set; }//FK UO_Category
-
+        
         [Display(Name = "Tema")]
         public string TopicAnswer { get; set; }
+
+        [Display(Name = "Calificacion")]
+        public int RateAnswer { get; set; }
 
         [Display(Name = "Respuesta")]
         public string DescriptionAnswer { get; set; }

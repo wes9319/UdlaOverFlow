@@ -10,6 +10,7 @@ namespace UdlaOverflow.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "UdlaOverflow.Models.ApplicationDbContext";
         }
 

@@ -14,13 +14,14 @@ namespace UdlaOverflow.Models
 
         [Display(Name = "Categoría")]
         public int UO_CategoryID { get; set; }//FK UO_Category
-
+        [Required]
         [Display(Name = "Título de la Pregunta")]
         public string TitleQuestion { get; set; }
-
+        [Required]
         [Display(Name = "Descripción de la Pregunta")]
         public string DescriptionQuestion { get; set; }
-
+        [Required]
+        [DataType(DataType.DateTime)]
         [Display(Name = "Fecha de Publicación")]
         public DateTime DateQuestion { get; set; }
 

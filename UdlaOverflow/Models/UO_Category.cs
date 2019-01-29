@@ -10,6 +10,7 @@ namespace UdlaOverflow.Models
     {
         public int UO_CategoryID { get; set; }
 
+        [Required]
         [Display(Name = "Categoría")]
         public string DescriptionCategory { get; set; }
 
