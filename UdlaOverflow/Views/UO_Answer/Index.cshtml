@@ -1,0 +1,57 @@
+﻿@model IEnumerable<UdlaOverflow.Models.UO_Answer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Respuestas Recientes</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UO_Question.TitleQuestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UO_UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UO_CategoryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TopicAnswer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionAnswer)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UO_Question.TitleQuestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UO_UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UO_CategoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopicAnswer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionAnswer)
+        </td>
+        <td>
+            @*@Html.ActionLink("Editar", "Edit", new { id=item.UO_AnswerID }) |
+            @Html.ActionLink("Ver Detalle", "Details", new { id=item.UO_AnswerID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.UO_AnswerID })*@
+        </td>
+    </tr>
+}
+
+</table>

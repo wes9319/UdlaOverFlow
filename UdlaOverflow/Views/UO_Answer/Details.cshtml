@@ -1,0 +1,58 @@
+﻿@model UdlaOverflow.Models.UO_Answer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>Detalle de la Respuesta</h1>
+
+<div>
+    @*<h4>UO_Answer</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UO_Question.TitleQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UO_Question.TitleQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UO_UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UO_UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UO_CategoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UO_CategoryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopicAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopicAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionAnswer)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.UO_AnswerID }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdlaOverflow", "UdlaOverflow\UdlaOverflow.csproj", "{41255628-34CA-45E9-AA94-CC4DB4867331}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdlaOverflow", "UdlaOverflow\UdlaOverflow.csproj", "{FF0BC590-CD86-4D7C-A29D-029649508437}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{41255628-34CA-45E9-AA94-CC4DB4867331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41255628-34CA-45E9-AA94-CC4DB4867331}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41255628-34CA-45E9-AA94-CC4DB4867331}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41255628-34CA-45E9-AA94-CC4DB4867331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0BC590-CD86-4D7C-A29D-029649508437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0BC590-CD86-4D7C-A29D-029649508437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0BC590-CD86-4D7C-A29D-029649508437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0BC590-CD86-4D7C-A29D-029649508437}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7D563AF5-9C11-4590-B279-BA2C5BE5E069}
+		SolutionGuid = {B72B5765-F9CB-40D4-BE33-C93507350D8E}
 	EndGlobalSection
 EndGlobal

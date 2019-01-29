@@ -1,0 +1,61 @@
+﻿@model UdlaOverflow.Models.UO_Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>Detalles de la Pregunta</h1>
+
+<div>
+    @*<h4>UO_Question</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UO_Category.DescriptionCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UO_Category.DescriptionCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UO_UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UO_UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateQuestion)
+        </dd>
+
+
+    </dl>
+    @Html.Action("_AnswersForQuestion", "UO_Answer", new { Questionid = Model.UO_QuestionID })
+
+</div>
+<p>
+    @*@Html.ActionLink("Editar", "Edit", new { id = Model.UO_QuestionID }) |*@
+    @Html.ActionLink("Volver a todas las Preguntas", "Index")
+</p>

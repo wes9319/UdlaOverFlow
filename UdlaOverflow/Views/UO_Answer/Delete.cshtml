@@ -1,0 +1,64 @@
+﻿@model UdlaOverflow.Models.UO_Answer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h1>Eliminar Respuesta</h1>
+
+<h3>Esta seguro que desea eliminar la Respuesta?</h3>
+<div>
+    @*<h4>UO_Answer</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UO_Question.TitleQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UO_Question.TitleQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UO_UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UO_UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UO_CategoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UO_CategoryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopicAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopicAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionAnswer)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Volver", null, null, null, new { href = Request.UrlReferrer })
+    </div>
+    }
+</div>
